@@ -1,27 +1,26 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button v-show="homePage"
+    <Button
+        v-show="homePage"
         @btn-click="$emit('toggle-add-task')"
-        :text="showAddTask ? 'Close' : 'AddTask'"
+        :text="showAddTask ? 'Close' : 'Add Task'"
         :color="showAddTask ? 'red' : 'green'"
     />
-    <!--    <Button text="Update Task" color="blue"/>-->
-    <!--    <Button text="Delete Task Task" color="red"/>-->
   </header>
 </template>
 
 <script>
-import Button from "./Button";
+import Button from './Button'
 
 export default {
   name: 'Header',
   props: {
     title: String,
-    showAddTask: Boolean
+    showAddTask: Boolean,
   },
   components: {
-    Button
+    Button,
   },
   computed: {
     homePage() {
@@ -30,8 +29,8 @@ export default {
       } else {
         return false
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

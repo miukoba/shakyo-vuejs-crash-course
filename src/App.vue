@@ -3,16 +3,16 @@
     <Header
         @toggle-add-task="toggleAddTask"
         title="Task Tracker"
-        :showAddTask="showAddTask"/>
+        :showAddTask="showAddTask"
+    />
     <router-view :showAddTask="showAddTask"></router-view>
     <Footer/>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import Footer from "@/components/Footer";
-
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export default {
   name: 'App',

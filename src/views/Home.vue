@@ -1,31 +1,34 @@
 <template>
-  <AddTask v-show="showAddTask"
-           @add-task="addTask"/>
-  <Tasks @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks"/>
+  <AddTask v-show="showAddTask" @add-task="addTask"/>
+  <Tasks
+      @toggle-reminder="toggleReminder"
+      @delete-task="deleteTask"
+      :tasks="tasks"
+  />
 </template>
 
 <script>
-import Tasks from "@/components/Tasks";
-import AddTask from "@/components/AddTask";
+import Tasks from '@/components/Tasks'
+import AddTask from '@/components/AddTask'
 
 export default {
-  name: "Home",
+  name: 'Home',
   props: {
     showAddTask: Boolean,
   },
   components: {
     Tasks,
-    AddTask
+    AddTask,
   },
   data() {
     return {
-      tasks: []
+      tasks: [],
     }
   },
   methods: {
     async addTask(task) {
       const res = await fetch('api/tasks', {
-        method: 'post',
+        method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
@@ -37,7 +40,7 @@ export default {
       this.tasks = [...this.tasks, data]
     },
     async deleteTask(id) {
-      if (confirm('Are you Sure')) {
+      if (confirm('Are you sure?')) {
         const res = await fetch(`api/tasks/${id}`, {
           method: 'DELETE',
         })
@@ -50,6 +53,7 @@ export default {
     async toggleReminder(id) {
       const taskToToggle = await this.fetchTask(id)
       const updTask = {...taskToToggle, reminder: !taskToToggle.reminder}
+
       const res = await fetch(`api/tasks/${id}`, {
         method: 'PUT',
         headers: {
@@ -77,15 +81,10 @@ export default {
       const data = await res.json()
 
       return data
-    }
-
+    },
   },
   async created() {
     this.tasks = await this.fetchTasks()
-  }
+  },
 }
 </script>
-
-<style scoped>
-
-</style>
