@@ -11,17 +11,21 @@ yarn install
 ### Compiles and hot-reloads for development
 
 ```
-yarn serve
+# frontend
+yarn run serve
+
+# backend
+yarn run backend
 ```
 
 ### Compiles and minifies for production
 
 ```
-yarn build
+yarn run build
 ```
 
 ### Lints and fixes files
 
 ```
-yarn lint
+yarn run lint
 ```
